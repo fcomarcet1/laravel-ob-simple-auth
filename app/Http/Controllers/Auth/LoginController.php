@@ -32,7 +32,10 @@ class LoginController extends Controller
     }
 
     public function logout() {
-
+        if (session()->has('user')) {
+            session()->forget('user');
+            return redirect()->route('login');
+        }
     }
 
     private function _checkCredentials($input): bool {

@@ -9,8 +9,18 @@
 </head>
 <body>
     <h1>Home Page</h1>
+    {{--<h2>Welcome {{)}}</h2>--}}
      {{-- Create login, register  a href--}}
-    <a href="{{ route('login') }}">Login</a><br/>
-    <a href="{{ route('register') }}">Register</a><br/>
+    @if(Session::has('user'))
+        {{--<a href="{{ route('logout') }}">Logout</a>--}}
+        <a href="javascript:void(0)" onclick="document.getElementById('logout').submit();">Logout</a>
+        <form method="post" action="{{ route('logout') }}" id="logout" style="display: none">
+            @csrf
+        </form>
+    @else
+        <a href="{{ route('login') }}">Login</a>
+        <a href="{{ route('register') }}">Register</a>
+    @endif
+
 </body>
 </html>
