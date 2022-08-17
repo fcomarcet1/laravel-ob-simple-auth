@@ -11,26 +11,17 @@ class RoleController extends Controller
         //
     }
 
-
     public function create()
     {
         //
     }
 
-
-    public function save(Request $request)
-    {
-        //
-    }
-
+    public function save(Request $request, $id = null){}
 
     public function edit($id)
     {
         //
     }
 
-
-    public function delete($id)
-    {
-    }
+    public function delete($id){}
 }

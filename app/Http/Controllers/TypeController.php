@@ -18,7 +18,7 @@ class TypeController extends Controller
     }
 
 
-    public function save(Request $request)
+    public function save(Request $request,  $id = null)
     {
         //
     }
