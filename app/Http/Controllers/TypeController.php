@@ -8,6 +8,9 @@ class TypeController extends Controller
 {
     public function index()
     {
+        /*$posts = Post::with('tags', 'category')->latest()->paginate(12);
+        return view('posts.index', compact('posts'));*/
+
         return view('type.index');
     }
 
@@ -18,10 +21,15 @@ class TypeController extends Controller
     }
 
 
-    public function save(Request $request,  $id = null)
+    public function store(Request $request,  $id = null)
     {
         //
     }
+
+    /*public function show($id) {
+        $post = Post::with('tags', 'category')->findOrFail($id);
+        return view('posts.show', compact('post'));
+    }*/
 
 
     public function edit($id)

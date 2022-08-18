@@ -40,6 +40,7 @@ Route::middleware('authentication')->group(function () {
 
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/{id}', [RoleController::class, 'show'])->name('show');
         Route::get('/create', [UserController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
         Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [UserController::class, 'save'])->name('save');
@@ -49,16 +50,18 @@ Route::middleware('authentication')->group(function () {
     Route::prefix('roles')->name('roles.')->group(function () {
         Route::get('/', [RoleController::class, 'index'])->name('index');
         Route::get('/create', [RoleController::class, 'create'])->name('create');
+        Route::get('/{id}', [RoleController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
-        Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [RoleController::class, 'save'])->name('save');
+        Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [RoleController::class, 'store'])->name('store');
         Route::delete('/{id}', [RoleController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('types')->name('types.')->group(function () {
         Route::get('/', [TypeController::class, 'index'])->name('index');
+        Route::get('/{id}', [RoleController::class, 'show'])->name('show');
         Route::get('/create', [TypeController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [TypeController::class, 'edit'])->name('edit');
-        Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [TypeController::class, 'save'])->name('save');
+        Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [TypeController::class, 'store'])->name('store');
         Route::delete('/{id}', [TypeController::class, 'delete'])->name('delete');
     });
 });
