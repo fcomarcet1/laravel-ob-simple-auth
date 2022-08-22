@@ -58,8 +58,8 @@ Route::middleware('authentication')->group(function () {
 
     Route::prefix('types')->name('types.')->group(function () {
         Route::get('/', [TypeController::class, 'index'])->name('index');
-        Route::get('/{id}', [RoleController::class, 'show'])->name('show');
         Route::get('/create', [TypeController::class, 'create'])->name('create');
+        Route::get('/{id}', [TypeController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [TypeController::class, 'edit'])->name('edit');
         Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [TypeController::class, 'store'])->name('store');
         Route::delete('/{id}', [TypeController::class, 'delete'])->name('delete');

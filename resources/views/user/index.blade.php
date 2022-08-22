@@ -9,5 +9,6 @@
 </head>
 <body>
 <h2>User index</h2>
+@include('auth.logout')
 </body>
 </html>

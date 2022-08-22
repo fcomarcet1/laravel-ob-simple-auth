@@ -12,7 +12,7 @@
     {{-- Css custom--}}
 </head>
 <body>
-<h2>Roles List</h2>
+<h2>Roles Detail</h2>
 {{-- show flash message --}}
 @if(Session::has('success'))
     <div class="alert alert-success">

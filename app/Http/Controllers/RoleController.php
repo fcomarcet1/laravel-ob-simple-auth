@@ -42,6 +42,14 @@ class RoleController extends Controller
      * @throws \Exception
      */
     public function store(Request $request, $id = null){
+
+        /*if (($request->isMethod('POST') && $id !== null) ||
+            $request->isMethod('PUT') ||
+            ($request->isMethod('PATCH') && $id === null)
+        ) {
+            abort(403, 'Method not allowed');
+        }*/
+
         $request->validate([
             'role' => 'required|string|max:255',
         ]);
