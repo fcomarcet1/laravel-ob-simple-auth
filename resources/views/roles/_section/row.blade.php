@@ -11,7 +11,10 @@
         <form method="post" action="{{ route('roles.delete', $role['id']) }}" id="delete" style="display: none">
             @csrf
         </form>--}}
-            <form method="post" action="{{ route('roles.delete', ['id' => $role['id']])  }}" id="delete">
+            <form method="post"
+                  onsubmit="return confirm('Are you sure you want to delete this role?')"
+                  action="{{ route('roles.delete', ['id' => $role['id']])  }}"
+                  id="delete">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger">Delete</button>

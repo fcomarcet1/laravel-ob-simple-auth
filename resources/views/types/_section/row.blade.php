@@ -12,7 +12,10 @@
             @csrf
         </form>--}}
 
-        <form method="post" action="{{ route('types.delete', ['id' => $type['id']])  }}" id="delete">
+        <form method="post"
+              onsubmit="return confirm('Are you sure you want to delete this Type?')"
+              action="{{ route('types.delete', ['id' => $type['id']])  }}"
+              id="delete">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger">Delete</button>

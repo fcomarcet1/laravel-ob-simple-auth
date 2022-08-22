@@ -29,6 +29,8 @@ class LoginController extends Controller
         //Session::input('user', $input);
         $request->session()->put('user', $input);
         return redirect()->route('home');
+
+
     }
 
     public function logout() {

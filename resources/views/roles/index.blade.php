@@ -6,14 +6,17 @@
             <p>{{ Session::get('success') }}</p>
         </div>
     @endif
-    <div class="container py-5">
-        <a href="{{ route('roles.create') }}" class="btn btn-primary">
-            <i class="bi bi-plus"></i>Add new role
-        </a>
-        {{-- <button type="button" class="btn btn-primary"><span class="bi bi-plus"></span> Sample Button</button> --}}
-        @include('auth.logout')
-        @include('roles._section.table', ['roles' => $roles])
-        <a href="{{ route('home') }}" class="btn btn-success">volver</a>
+    <div class="row justify-content-center py-5">
+        <div class="col-12 col-md-10">
+            <h2>Roles List</h2>
+            <a href="{{ route('roles.create') }}" class="btn btn-primary">
+                <i class="bi bi-plus"></i>Add new role
+            </a>
+            {{-- <button type="button" class="btn btn-primary"><span class="bi bi-plus"></span> Sample Button</button> --}}
+            @include('auth.logout')
+            @include('roles._section.table', ['roles' => $roles])
+            <a href="{{ route('home') }}" class="btn btn-success">volver</a>
+        </div>
     </div>
 @endsection
 
