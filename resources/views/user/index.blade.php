@@ -1,14 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h2>User index</h2>
-@include('auth.logout')
-</body>
-</html>
+@extends('layouts.base')
+@section('title', 'Users')
+@section('main')
+    <div class="row justify-content-center py-5">
+        <div class="col-12 col-md-10">
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    <p>{{ Session::get('success') }}</p>
+                </div>
+            @endif
+            <h2>Users List</h2>
+            <a href="{{ route('user.create') }}" class="btn btn-primary">
+                <i class="bi bi-plus"></i>Add new User
+            </a>
+            {{-- <button type="button" class="btn btn-primary"><span class="bi bi-plus"></span> Sample Button</button> --}}
+            @include('auth.logout')
+            @include('user._section.table', ['users' => $users])
+            <a href="{{ route('home') }}" class="btn btn-success">volver</a>
+        </div>
+    </div>
+@endsection

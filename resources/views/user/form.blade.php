@@ -1,25 +1,34 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ env('APP_NAME') }}</title>
-</head>
-<body>
-<h1>Login page</h1>
-@if(Session::has('error'))
-    <div class="alert alert-danger">
-        {{--<p style="color: red">{{ session('error') }}</p>--}}
-        <p style="color: red">{{ Session::get('error') }}</p>
+@extends('layouts.base')
+<div class="row justify-content-center py-5">
+    <div class="col-12 col-md-5">
+        @if(isset($id) && $id !== null)
+            <h2>Edit User</h2>
+        @else
+            <h2>Create New User</h2>
+        @endif
+        @if(Session::has('error'))
+            <div class="alert alert-danger">
+                {{--<p style="color: red">{{ session('error') }}</p>--}}
+                <p style="color: red">{{ Session::get('error') }}</p>
+            </div>
+        @endif
+        @if(Session::has('error'))
+            <div class="alert alert-danger">
+                {{--<p style="color: red">{{ session('error') }}</p>--}}
+                <p style="color: red">{{ Session::get('error') }}</p>
+            </div>
+        @endif
+        <div class="form-group"></div>
+            <form action=" {{ route('user.store') }}" method="post" autocomplete="off">
+                @csrf
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" type="text" name="name" id="name"  value="{{ $record !== null ? $record['name'] :'' }}" placeholder="Add name" ><br/>
+
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" name="email" id="email"  value="{{ $record !== null ? $record['email'] :'' }}" placeholder="Add email"><br/>
+
+                <input class="btn btn-primary" type="submit" value="Add User">
+            </form>
+        </div>
     </div>
-@endif
-<form action="" method="post" autocomplete="off">
-    @csrf
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" placeholder="Add name"><br/>
-    <input type="submit" value="Add User">
-</form>
-</body>
-</html>
+</div>

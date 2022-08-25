@@ -40,10 +40,10 @@ Route::middleware('authentication')->group(function () {
 
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
-        Route::get('/{id}', [RoleController::class, 'show'])->name('show');
         Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::get('/{id}', [UserController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
-        Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [UserController::class, 'save'])->name('save');
+        Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [UserController::class, 'store'])->name('store');
         Route::delete('/{id}', [UserController::class, 'delete'])->name('delete');
     });
 

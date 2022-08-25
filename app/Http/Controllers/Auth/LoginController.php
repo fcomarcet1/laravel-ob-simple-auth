@@ -43,7 +43,7 @@ class LoginController extends Controller
     private function _checkCredentials($input): bool {
         $credentials = [
             'email' => 'fcomarcet1@gmail.com',
-            'password' => 'a636585669*'
+            'password' => 'a123456*'
         ];
 
         if (!isset($input['email'], $input['password'])){
