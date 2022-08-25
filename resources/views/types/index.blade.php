@@ -10,8 +10,8 @@
             </div>
         @endif
         <a href="{{ route('types.create') }}" class="btn btn-success">Create new Type</a>
-        @include('auth.logout')
-        @include('types._section.table', ['types' => $types])
+            @include('auth.logout')
+            @include('types._section.table', ['types' => $types])
         <a href="{{ route('home') }}" class="btn btn-primary">volver</a>
     </div>
 </div>

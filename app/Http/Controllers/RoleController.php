@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class RoleController extends Controller
 {
@@ -39,7 +42,7 @@ class RoleController extends Controller
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function store(Request $request, $id = null){
 
@@ -60,12 +63,21 @@ class RoleController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
-       /* dump($role); die();*/
 
         if($id){
             $role['id'] = $id;
         }
-        return redirect()->route('roles.index')->with('success', 'Role:'.$request->role.' saved successfully');
+
+        if ($request->isMethod('POST')){
+            //$message = Session::flash('success', "Role with:" . $role['id']. "created successfully");
+            return redirect()->route('roles.index')->with('success', 'Role:'.$request->role.' saved successfully');
+        }
+        if ($request->isMethod('PUT') || $request->isMethod('PATCH')){
+            //$message = Session::flash('success', "Role with:" . $role['id']. "updated successfully");
+            return redirect()->route('roles.index')->with('success', 'Role:'.$request->role.' updated successfully');
+        }
+
+        //return redirect()->route('roles.index')->with('success', 'Role:'.$request->role.' saved successfully');
         //return $role;
     }
 
@@ -96,7 +108,7 @@ class RoleController extends Controller
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function edit($id){
         /*$role = match ($id) {

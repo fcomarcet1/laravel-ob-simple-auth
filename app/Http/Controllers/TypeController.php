@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 
 class TypeController extends Controller
@@ -38,7 +39,7 @@ class TypeController extends Controller
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function store(Request $request, $id = null){
 
@@ -95,7 +96,7 @@ class TypeController extends Controller
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function edit($id){
         /*$role = match ($id) {
