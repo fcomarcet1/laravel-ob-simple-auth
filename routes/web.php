@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
+Route::get('/service-injection', [HomeController::class, 'index'])->name('home');
+
 Route:: redirect('/', '/home');
 
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
