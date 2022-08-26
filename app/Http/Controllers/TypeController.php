@@ -65,8 +65,16 @@ class TypeController extends Controller
         if($id){
             $type['id'] = $id;
         }
-        return redirect()->route('types.index')->with('success', 'Type:'.$request->type.' saved successfully');
-        //return $role;
+
+        if ($request->isMethod('POST')){
+            //$message = Session::flash('success', "Role with:" . $role['id']. "created successfully");
+            return redirect()->route('types.index')->with('success', 'Role:'.$request->role.' saved successfully');
+        }
+        if ($request->isMethod('PUT') || $request->isMethod('PATCH')){
+            //$message = Session::flash('success', "Role with:" . $role['id']. "updated successfully");
+            return redirect()->route('types.index')->with('success', 'Role:'.$request->role.' updated successfully');
+        }
+
     }
 
     public function show($id){

@@ -75,8 +75,15 @@ class UserController extends Controller
         if($id){
             $user['id'] = $id;
         }
-        return redirect()->route('user.index')->with('success', 'User:'.$request->email.' saved successfully');
 
+        if ($request->isMethod('POST')){
+            //$message = Session::flash('success', "Role with:" . $role['id']. "created successfully");
+            return redirect()->route('user.index')->with('success', 'User:'.$request->email.' saved successfully');
+        }
+        if ($request->isMethod('PUT') || $request->isMethod('PATCH')){
+            //$message = Session::flash('success', "Role with:" . $role['id']. "updated successfully");
+            return redirect()->route('user.index')->with('success', 'User:'.$request->email.' updated successfully');
+        }
     }
 
     public function show($id)
