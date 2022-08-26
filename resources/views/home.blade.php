@@ -15,6 +15,7 @@
             <a href="{{ route('roles.index') }}" class="btn btn-primary">Roles</a>
             <a href="{{ route('types.index') }}" class="btn btn-success">Types</a>
             <a href="{{ route('user.index') }}" class="btn btn-warning">Users</a>
+            <a href="{{ route('custom-blade-directive') }}" class="btn btn-dark">Custom blade Directive</a>
             @include('auth.logout')
         @else
             <a href="{{ route('login') }}">Login</a>

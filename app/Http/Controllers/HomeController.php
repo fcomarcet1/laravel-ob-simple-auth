@@ -24,8 +24,12 @@ class HomeController extends Controller
     }
 
     public function index() {
-        $this->homeRepository->HelloWorld();
-        $this->userRepository->HelloWorld();
+        //$this->homeRepository->HelloWorld();
+        //$this->userRepository->HelloWorld();
         return view('home');
+    }
+
+    public function testCustomBladeDirective() {
+        return view('custom-blade-directive');
     }
 }

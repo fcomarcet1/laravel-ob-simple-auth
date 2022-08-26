@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/service-injection', [HomeController::class, 'index'])->name('home');
+Route::get('/custom-blade-directive', [HomeController::class, 'testCustomBladeDirective'])
+    ->name('custom-blade-directive');
 
 Route:: redirect('/', '/home');
 
