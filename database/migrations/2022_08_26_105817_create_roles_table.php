@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('role', 150);
             //$table->unsignedSmallInteger('level')->default(0);
             $table->timestamps();
-            $table->softDeletes(); // this will create deleted_at field for softdelete
+            $table->softDeletes();
+            // this will create deleted_at field for softdelete
         });
     }
 

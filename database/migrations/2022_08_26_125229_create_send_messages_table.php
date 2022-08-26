@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('send_messages', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // varchar(255)
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedBigInteger('user_id');
+            $table->enum('status', ['pending', 'sent', 'failed'])->default('pending');
+            $table->string('subject', 255);
+            $table->text('message');
+            $table->string('email', 150);
+            $table->date('send_at')->nullable();
             $table->timestamps();
-            //$table->softDeletes(); // we can problematically use this for unique email
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('send_messages');
     }
 };

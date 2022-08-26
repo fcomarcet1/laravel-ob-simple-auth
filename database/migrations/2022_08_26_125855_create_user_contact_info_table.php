@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user_contact_info', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // varchar(255)
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedBigInteger('user_id');
+            $table->enum('type', ['phone', 'email', 'skype', 'facebook'])->default('email');
+            $table->string('info', 100);
             $table->timestamps();
-            //$table->softDeletes(); // we can problematically use this for unique email
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user_contact_info');
     }
 };

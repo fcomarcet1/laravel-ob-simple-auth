@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user_access', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // varchar(255)
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedBigInteger('user_id');
+            $table->ipAddress();
+            $table->string('browser', 255);
+            $table->double('location_longitude');
+            $table->double('location_latitude');
             $table->timestamps();
-            //$table->softDeletes(); // we can problematically use this for unique email
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user_access');
     }
 };
