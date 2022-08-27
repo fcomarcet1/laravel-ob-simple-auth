@@ -14,23 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
+        // With seeders
+        /* $this->call([
             ProductsSeeder::class,
             CategorySeeder::class,
-        ]);
+        ]); */
 
-
-        /* \App\Models\User::factory()->create([
-           'name' => 'Admin',
-           'email' => 'admin@admin.com'
-        ]);
-        \App\Models\User::factory()->create([
-            'name' => 'fcomarcet1',
-            'email' => 'fcoomarcet1@gmail.com'
-        ]);*/
-
-        // \App\Models\User::factory(8)->create();
-
-
+        // With factories
+        \App\Models\User::factory(5)->create();
+        \App\Models\User::factory(5)->unverified()->create();
     }
 }
