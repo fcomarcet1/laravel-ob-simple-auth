@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->isLocal()) {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 
     /**
@@ -35,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
             return config('filesystems.default') === $value;
         });
 
-        Blade::if('mailer', function ($input){
+        Blade::if('mailer', function ($input) {
             $configuredMailer = config('mail.default');
             return $input === $configuredMailer;
         });
