@@ -6,7 +6,9 @@
         @if(Session::has('success'))
             <div class="alert alert-success">
                 {{--<p style="color: red">{{ session('error') }}</p>--}}
+                <p>{{ Session::get('success') }}</p>
                 <p style="color: red">{{ Session::get('error') }}</p>
+
             </div>
         @endif
         {{--<h2>Welcome {{)}}</h2>--}}

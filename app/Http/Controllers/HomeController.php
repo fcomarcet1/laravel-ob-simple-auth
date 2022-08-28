@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Repositories\Implementations\HomeRepository;
 use App\Repositories\Implementations\UserRepository;
+use Illuminate\Support\Facades\Auth;
 
 
 class HomeController extends Controller

@@ -16,35 +16,10 @@ class UserController extends Controller
      * @throws Exception
      */
     public function index() {
-
-        $users =  [
-            [
-                'id' => 1,
-                'name' => 'admin',
-                'email' => 'admin@admin.com',
-                'created_at' => '2021-01-01 15:30:20',
-                'updated_at' => '2021-01-01 15:30:20',
-            ],
-            [
-                'id' => 2,
-                'name' => 'frank',
-                'email' => 'frank@admin.com',
-                'created_at' => '2021-02-01 15:31:20',
-                'updated_at' => '2021-02-01 15:31:20',
-            ],
-            [
-                'id' => 2,
-                'name' => 'lerele',
-                'email' => 'lerele@admin.com',
-                'created_at' => '2021-03-01 15:32:20',
-                'updated_at' => '2021-03-01 15:32:20',
-            ]
-
-        ];
-
+        //$users = User::all()->toArray();
+        $users = User::get()->toArray();
         return view('user.index', compact('users'));
     }
-
 
     public function create()
     {
@@ -54,7 +29,6 @@ class UserController extends Controller
             'record' => null
         ]);
     }
-
 
     public function store(Request $request, $id = null)
     {
@@ -150,7 +124,6 @@ class UserController extends Controller
             'record' => $record,
         ]);
     }
-
 
     public function delete($id)
     {
