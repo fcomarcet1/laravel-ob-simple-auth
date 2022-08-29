@@ -152,6 +152,13 @@ class TestEloquentController extends Controller
         //increment
         $usersIncrement = DB::table('users')->where('id', 1)->increment('role_id', 1);
 
+        //truncate
+        //$usersTruncate = DB::table('users')->truncate();
+
+        // delete
+        //$usersTruncate = DB::table('users')->whereIn('id', [1, 2, 3])->delete();
+
+
         print_r($users19); die();
         //return view('eloquent.index', compact('users'));
     }
