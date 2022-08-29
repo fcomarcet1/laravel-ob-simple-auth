@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Str;
 
 class TestEloquentController extends Controller
 {
@@ -114,6 +115,37 @@ class TestEloquentController extends Controller
         //skip
         $users18 = DB::table('users')->limit(2)->skip(2)->get();
         $users19 = DB::table('users')->limit(5)->skip(2)->take(2)->get();
+
+        // Insert data into table
+        $usersInsert = DB::table('users')->insert([
+            'role_id' => 1,
+            'name' => 'Marie Doe',
+            'email' => 'john@test.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            //'deleted_at' => null,
+            ]);
+
+        // Update data into table
+        $usersUpdate = DB::table('users')->where('id', 1)->update([
+            'role_id' => 3,
+            'name' => 'Frank Doe',
+            'email' => 'updated@test.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+
+        //Update or Insert data into table
+        $usersUpdateOrInsert = DB::table('users')->updateOrInsert([
+            'id' => 12],
+            [
+                'role_id' => 3,
+                'name' => 'Manolo Doe',
+                'email' => 'manolo@mail.es',
+            ]);
+
 
         print_r($users19); die();
         //return view('eloquent.index', compact('users'));
