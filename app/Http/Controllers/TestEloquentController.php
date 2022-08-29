@@ -24,7 +24,7 @@ class TestEloquentController extends Controller
         // get field name, email  from user with id = 5
         $user5 = DB::table('users')->select('name', 'email')->where('id', 5)->get();
 
-        print_r($user7);
+        //print_r($user7);
 
         /*foreach ($user7 as $user) {
             echo $user->name;
@@ -64,8 +64,49 @@ class TestEloquentController extends Controller
             ->whereRaw('id = 1')
             //->whereRaw('(id = 1 or id = 2)')
             //->whereRaw('name like ?', ['%A%'])
-            ->whereNull('deleted_at')
+            //->whereNull('deleted_at')
             ->get();
+
+
+        // joins
+        $users12 = DB::table('users')
+            //->select('users.name', 'users.email', 'roles.role')
+            ->selectRaw('users.*, roles.role, roles.level as role_level')
+            ->where('users.id', 1)
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            //->rightJoin('roles', 'users.role_id', '=', 'roles.id')
+            //->leftJoin('roles', 'users.role_id', '=', 'roles.id')
+            //->crossJoin('roles')
+            ->get();
+
+        // if we need use the alias example:role_level --> use having clause
+        $users13 = DB::table('users')
+            ->selectRaw('users.*, roles.role, roles.level as role_level')
+            ->where('users.id', 1)
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            //->having('role_level', 1)
+            ->having('role_level', '>', 0)
+            ->get();
+
+        $users14 = DB::table('users')
+            ->selectRaw('users.*, roles.level as role_level')
+            ->where('users.id', 2)
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            //->having('role_level', 1)
+            ->having('role_level', '>', 0)
+            ->get();
+
+        // Raw clauses. All methods are available in Raw mode.
+        $users15 = DB::table('users')
+            ->selectRaw('users.*, roles.level as role_level')
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            ->whereRaw('users.id = 1')
+            ->havingRaw('role_level > 0')
+            ->orderByRaw('users.name asc')
+            ->get();
+
+        $users16 = DB::table('users')->select(DB::raw("name, email"))->get();
+        print_r($users16); die();
 
         //return view('eloquent.index', compact('users'));
     }
