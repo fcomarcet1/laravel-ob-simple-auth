@@ -15,9 +15,11 @@ class UserFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     * @throws \Exception
      */
     public function definition(): array {
         return [
+            'role_id' => random_int(1, 2),
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'email_verified_at' => now(),
