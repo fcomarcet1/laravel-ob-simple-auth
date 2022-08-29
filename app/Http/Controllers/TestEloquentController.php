@@ -146,6 +146,11 @@ class TestEloquentController extends Controller
                 'email' => 'manolo@mail.es',
             ]);
 
+        // decrement
+        $usersDecrement = DB::table('users')->where('id', 1)->decrement('role_id', 1);
+
+        //increment
+        $usersIncrement = DB::table('users')->where('id', 1)->increment('role_id', 1);
 
         print_r($users19); die();
         //return view('eloquent.index', compact('users'));
