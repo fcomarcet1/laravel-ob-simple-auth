@@ -106,8 +106,16 @@ class TestEloquentController extends Controller
             ->get();
 
         $users16 = DB::table('users')->select(DB::raw("name, email"))->get();
-        print_r($users16); die();
 
+
+        // limit
+        $users17 = DB::table('users')->limit(2)->get();
+
+        //skip
+        $users18 = DB::table('users')->limit(2)->skip(2)->get();
+        $users19 = DB::table('users')->limit(5)->skip(2)->take(2)->get();
+
+        print_r($users19); die();
         //return view('eloquent.index', compact('users'));
     }
 
