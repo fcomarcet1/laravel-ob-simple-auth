@@ -15,8 +15,7 @@ use Session;
 
 class LoginController extends Controller
 {
-    public function index(): Factory|View|Application
-    {
+    public function index(): Factory|View|Application {
         return view('auth.login');
     }
 

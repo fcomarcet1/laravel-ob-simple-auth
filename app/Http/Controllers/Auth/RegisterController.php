@@ -31,7 +31,7 @@ class RegisterController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect("login")->withSuccess('have signed-in');
+        return redirect("login")->withSuccess('Your registration was successful. Please login to continue.');
     }
 
     public function create(array $data)
@@ -44,7 +44,7 @@ class RegisterController extends Controller
             'remember_token' => Str::random(10),
             'created_at' => now('Europe/Madrid'),
             'updated_at' => now('Europe/Madrid'),
-            
+
         ]);
     }
 }

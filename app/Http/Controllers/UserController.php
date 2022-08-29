@@ -21,8 +21,7 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
-    public function create()
-    {
+    public function create() {
         /*abort_if(Gate::denies('create-user'), Response::HTTP_FORBIDDEN, '403 Forbidden');*/
         return view('user.form', [
             'id' => null,
