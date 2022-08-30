@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Str;
 
-class TestEloquentController extends Controller
+class QueryBuilderController extends Controller
 {
     public function index() {
 
