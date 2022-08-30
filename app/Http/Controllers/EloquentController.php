@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ModelTable;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -36,5 +37,15 @@ class EloquentController extends Controller
         //$user2->save();
 
         print_r($user3); die();
+    }
+
+    public function testCustomModel(){
+
+        // create new register
+        $modelTableCreate = ModelTable::create([
+            'name' => 'Example',
+        ]);
+
+        //$testModel = ModelTable::find(1);
     }
 }

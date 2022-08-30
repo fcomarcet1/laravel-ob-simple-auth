@@ -37,6 +37,9 @@ Route::get('/test-query-builder', [QueryBuilderController::class, 'index'])->nam
 // test eloquent
 Route::get('/test-eloquent', [EloquentController::class, 'index'])->name('eloquent');
 
+Route::get('/test-eloquent-custom-model', [EloquentController::class, 'testCustomModel'])
+    ->name('eloquent-custom-model');
+
 //Route:: redirect('/', '/home');
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 

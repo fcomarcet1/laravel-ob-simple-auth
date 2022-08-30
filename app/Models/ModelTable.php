@@ -16,14 +16,15 @@ class ModelTable extends Model
     protected $primaryKey = 'uid';
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $dateFormat = 'Y-m-d H:i:s';
+
+    //protected $dateFormat = 'Y-m-d H:i:s';
 
     //change default created_at and updated_at column names
-    const CREATED_AT = 'created';
-    const UPDATED_AT = 'updated';
+    //const CREATED_AT = 'created';
+    //const UPDATED_AT = 'updated';
 
     // if we need connect to another database
-    protected $connection = 'mysql_second_db'; // mysql_second_db - name of connection in config/database.php
+    //protected $connection = 'mysql_second_db'; // mysql_second_db - name of connection in config/database.php
 
     protected $fillable = [
         'name',
