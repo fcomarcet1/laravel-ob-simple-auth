@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class ModelTable extends Model
 {
@@ -38,7 +39,8 @@ class ModelTable extends Model
     //constructor
     public function __construct()
     {
-        $this->uid = uniqid('', true);
+        //$this->uid = uniqid();
+        $this->uid = Str::random(32);
     }
 
 

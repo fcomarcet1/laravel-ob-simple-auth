@@ -42,9 +42,32 @@ class EloquentController extends Controller
     public function testCustomModel(){
 
         // create new register
-        $modelTableCreate = ModelTable::create([
-            'name' => 'Example',
+        /*for ($i=1; $i <= 3; $i++) {
+            $modelTableCreate = ModelTable::create([
+                'name' => 'Example_'.$i,
+            ]);
+        }*/
+
+        $uid = 'haJqS9hq8xstfxE7PPd6gKnRMDpftNYV';
+        $modelTableFind = ModelTable::find($uid);
+
+        // update register
+        /*$modelTableFind->name = 'Example_updated';
+        $modelTableFind->save();*/
+
+        $modelTableFind->update([
+            'name' => 'Example_updated2',
         ]);
+
+        //update or create register
+        $modelTableFind->updateOrCreate([
+            //'uid' => $uid,
+            'uid' => 'ZaJqS9hq8xstfxE7PPd6gKnRMDpftNYZ'
+        ], [
+            'name' => 'Example_updated4',
+        ]);
+
+        print_r($modelTableFind); die();
 
         //$testModel = ModelTable::find(1);
     }
