@@ -40,6 +40,10 @@ Route::get('/test-eloquent', [EloquentController::class, 'index'])->name('eloque
 Route::get('/test-eloquent-custom-model', [EloquentController::class, 'testCustomModel'])
     ->name('eloquent-custom-model');
 
+// soft delete
+Route::get('/test-eloquent-soft-delete', [EloquentController::class, 'testSoftDelete'])
+    ->name('eloquent-soft-delete');
+
 //Route:: redirect('/', '/home');
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 

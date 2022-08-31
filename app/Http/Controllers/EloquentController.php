@@ -71,4 +71,18 @@ class EloquentController extends Controller
 
         //$testModel = ModelTable::find(1);
     }
+
+    public function testSoftDelete(){
+        // we have field deleted_at in table users with not null values(deleted), we can restore,
+        $user = User::whereNotNull('id')->restore();
+
+        // restore soft deleted records
+        $user = User::withTrashed()->get();
+
+        // obtener valores borrados
+        $user = User::onlyTrashed()->get();
+
+        //
+
+    }
 }

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+// config for soft delete
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ModelTable extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     //table name
     protected $table = 'model_table';
