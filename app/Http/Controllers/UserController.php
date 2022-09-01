@@ -31,23 +31,45 @@ class UserController extends Controller
 
     public function store(Request $request, $id = null)
     {
+        if ($request->isMethod('POST' && $id != null) || $request->isMethod('PUT') | $request->isMethod('PATCH') && $id == null) {
+            abort(403);
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             //'email' => 'required|string|email|max:255|unique:users',
         ]);
 
-        $user = [
-            'id' => random_int(1, 100),
+        $input = $request->except('_token');
+        $user = User::where('email', $input['email'])->first();
+       /* if ($id == null) {
+            $user = User::create($input);
+        } else {
+            $user = User::find($id);
+            $user->update($input);
+        }*/
+        if($id !== null){
+            $id= $user->id;
+        }
+        $input['role_id'] = 1;
+
+        $user = User::updateOrCreate(
+            ['id' => $id],
+            $input
+        );
+
+        /*$user = [
+            //'id' => random_int(1, 100),
             'name' => $request->name,
             'email' => $request->email,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
-        ];
+        ];*/
 
-        if($id){
+        /*if($id){
             $user['id'] = $id;
-        }
+        }*/
 
         if ($request->isMethod('POST')){
             //$message = Session::flash('success', "Role with:" . $role['id']. "created successfully");
@@ -61,7 +83,10 @@ class UserController extends Controller
 
     public function show($id)
     {
-        switch ($id){
+        $user = User::findOrFail($id);
+        return view('user.show', compact('user'));
+
+        /*switch ($id){
             case 1:
                 $name = 'Admin';
                 $email = 'admin@admin.com';
@@ -78,22 +103,22 @@ class UserController extends Controller
                 $name = 'Unknown';
                 $email = 'Unknown';
                 break;
-        }
-
-        $user = [
+        }*/
+        /*$user = [
             'id' => $id,
             'name' => $name,
             'email' => $email,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
-        ];
-        return view('user.show', compact('user'));
+        ];*/
     }
 
     public function edit($id)
     {
         //abort_if(Gate::denies('edit-user', $user), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        switch ($id){
+
+        $record = User::findOrFail($id);
+       /* switch ($id){
             case 1:
                 $name = 'Admin';
                 $email = 'admin@admin.com';
@@ -110,14 +135,15 @@ class UserController extends Controller
                 $name = 'Unknown';
                 $email = 'Unknown';
                 break;
-        }
-        $record = [
+        }*/
+       /*$record = [
             'id' => $id,
             'name' => $name,
             'email' => $email,
             'created_at' => '2022-01-01 15:31:00',
             'updated_at' => date('Y-m-d H:i:s'),
-        ];
+        ];*/
+
         return view('user.form', [
             'id' => $id,
             'record' => $record,

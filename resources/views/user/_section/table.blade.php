@@ -3,6 +3,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Last Name</th>
         <th>Email</th>
         <th>Created At</th>
         <th>Updated At</th>

@@ -23,6 +23,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role_id',
         'name',
         'lastname',
         'email',
@@ -61,6 +62,7 @@ class User extends Authenticatable
     public function setPasswordAttribute($password): void {
         $this->attributes['password'] = Hash::make($password);
     }
+
     // example google auth
     public function get2FATokenAttribute() {
         decrypt($this->faToken);

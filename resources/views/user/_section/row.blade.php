@@ -1,6 +1,7 @@
 <tr>
     <td>{{ $user['id'] }}</td>
     <td>{{ $user['name'] }}</td>
+    <td>{{ $user['lastname'] }}</td>
     <td>{{ $user['email'] }}</td>
     <td>{{ date("d-m-Y H:i:s", strtotime($user['created_at']))  }}</td>
     <td>{{ date("F j, Y, g:i a", strtotime($user['updated_at'])) }}</td>

@@ -20,11 +20,19 @@
         @endif
         <div class="form-group"></div>
             <form action=" {{ route('user.store') }}" method="post" autocomplete="off">
+                @if($id !== null)
+                    <input type="hidden" name="id" value="{{ $id }}">
+                @endif
                 @csrf
                 <label class="form-label" for="name">Name</label>
-                <input class="form-control" type="text" name="name" id="name"  value="{{ $record !== null ? $record['name'] :'' }}" placeholder="Add name" ><br/>
+                <input class="form-control" type="text" name="name" id="name"
+                       value="{{ $record !== null ? $record['name'] :'' }}" placeholder="Add name" ><br/>
+                <label class="form-label" for="name">Last Name</label>
+                <input class="form-control" type="text" name="lastname" id="lastname"
+                       value="{{ $record !== null ? $record['lastname'] :'' }}" placeholder="Add name last name" ><br/>
                 <label class="form-label" for="email">Email</label>
-                <input class="form-control" type="email" name="email" id="email"  value="{{ $record !== null ? $record['email'] :'' }}" placeholder="Add email"><br/>
+                <input class="form-control" type="email" name="email" id="email"
+                       value="{{ $record !== null ? $record['email'] :'' }}" placeholder="Add email"><br/>
                 <input class="btn btn-primary" type="submit" value="{{ $id !== null ? 'Edit User' :'Add new User' }}">
             </form>
         </div>

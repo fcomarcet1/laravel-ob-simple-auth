@@ -15,6 +15,7 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
                 <th>Action</th>
             </tr>
@@ -23,6 +24,7 @@
             <tr>
                 <td>{{ $user['id'] }}</td>
                 <td>{{ $user['name'] }}</td>
+                <td>{{ $user['lastname'] }}</td>
                 <td>{{ $user['email'] }}</td>
                 <td>
                     <a href="{{ route('user.edit', ['id' => $user['id']]) }}" class="btn btn-primary">Edit</a>
