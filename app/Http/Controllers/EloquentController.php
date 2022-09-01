@@ -92,7 +92,13 @@ class EloquentController extends Controller
             ->with('role')
             ->first();
 
-        print_r($users33->fullname); die();
+        // accessor
+        //print_r($users33->fullname); die();
+
+        //mutator
+        $user55 = User::find(1);
+        $user55->password = '123456'; // with mutator we can encrypt password before save
+        $user55->save();
 
         // withCount obtenemos nº users relacionados con esta tabla
         $role = Role::withCount('user as administrator')->first();

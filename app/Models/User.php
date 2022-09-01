@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -51,7 +52,20 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function getFullnameAttribute() {
+    // accessor
+    public function getFullnameAttribute(): string {
         return $this->name . ' ' . $this->lastname;
+    }
+
+    // mutator
+    public function setPasswordAttribute($password): void {
+        $this->attributes['password'] = Hash::make($password);
+    }
+    // example google auth
+    public function get2FATokenAttribute() {
+        decrypt($this->faToken);
+    }
+    public function set2FATokenAttribute($input) {
+        $this->attributes['2f_aToken'] = encrypt($input);
     }
 }
