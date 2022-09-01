@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ModelTable;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -82,7 +83,25 @@ class EloquentController extends Controller
         // obtener valores borrados
         $user = User::onlyTrashed()->get();
 
-        //
+    }
+
+    public function withClause() {
+        // with && withCount
+        $users33 = User::whereNotNull('email_verified_at')
+            ->orWhere('id', '>', 3)
+            ->with('role')
+            ->first();
+
+        print_r($users33->fullname); die();
+
+        // withCount obtenemos nº users relacionados con esta tabla
+        $role = Role::withCount('user as administrator')->first();
+
+        $role1 = User::join('roles', 'users.role_id', '=', 'roles.id')->get();
+
+        print_r($role1); die();
+        print_r($role); die();
+        print_r($users33->role); die();
 
     }
 }
