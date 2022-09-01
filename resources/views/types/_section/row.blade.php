@@ -8,7 +8,7 @@
         <a href="{{ route('types.edit', $type['id']) }}" class="btn btn-warning">Edit</a>
 
         {{--<a href="javascript:void(0)" onclick="document.getElementById('delete').submit();">Delete</a>
-        <form method="post" action="{{ route('roles.delete', $type['id']) }}" id="delete" style="display: none">
+        <form method="posts" action="{{ route('roles.delete', $type['id']) }}" id="delete" style="display: none">
             @csrf
         </form>--}}
 

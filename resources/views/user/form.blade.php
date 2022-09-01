@@ -6,10 +6,10 @@
         @else
             <h2>Create New User</h2>
         @endif
-        @if(Session::has('error'))
+        @if(Session::has('success'))
             <div class="alert alert-danger">
                 {{--<p style="color: red">{{ session('error') }}</p>--}}
-                <p style="color: red">{{ Session::get('error') }}</p>
+                <p style="color: red">{{ Session::get('success') }}</p>
             </div>
         @endif
         @if(Session::has('error'))

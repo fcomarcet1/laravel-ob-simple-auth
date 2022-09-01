@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Auth\Access\Gate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -113,8 +114,7 @@ class UserController extends Controller
         ];*/
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         //abort_if(Gate::denies('edit-user', $user), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $record = User::findOrFail($id);
@@ -150,8 +150,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function delete($id)
-    {
+    public function delete($id): RedirectResponse {
         $user = User::findOrFail($id);
         if ($user){
             $user->delete();

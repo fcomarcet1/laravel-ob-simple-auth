@@ -35,7 +35,7 @@
     </div>
 </div>
 
-{{--<form action="{{ route('login') }}" method="post" autocomplete="off">
+{{--<form action="{{ route('login') }}" method="posts" autocomplete="off">
     @csrf
     <label for="email">Email</label>
     <input type="email" name="email" placeholder="Email"><br/>

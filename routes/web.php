@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EloquentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\QueryBuilderController;
 use App\Http\Controllers\TypeController;
@@ -87,6 +88,15 @@ Route::middleware('authentication')->group(function () {
         Route::get('/edit/{id}', [TypeController::class, 'edit'])->name('edit');
         Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [TypeController::class, 'store'])->name('store');
         Route::delete('/{id}', [TypeController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('post')->name('post.')->group(function () {
+        Route::get('/', [PostController::class, 'index'])->name('index');
+        Route::get('/create', [PostController::class, 'create'])->name('create');
+        Route::get('/{id}', [PostController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
+        Route::match(['POST', 'PUT', 'PATCH'], '/{id?}', [PostController::class, 'store'])->name('store');
+        Route::delete('/{id}', [PostController::class, 'delete'])->name('delete');
     });
 });
 
