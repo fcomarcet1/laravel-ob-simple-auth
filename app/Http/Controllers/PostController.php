@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostReadedEvent;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,13 @@ class PostController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        // create event
+        event(new PostReadedEvent($posts));
+
         return view('posts.index', compact('posts'));
     }
+
+
 
     public function feed($format) {
         $posts = Post::with('category', 'author')
