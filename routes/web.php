@@ -92,6 +92,7 @@ Route::middleware('authentication')->group(function () {
 
     Route::prefix('post')->name('post.')->group(function () {
         Route::get('/', [PostController::class, 'index'])->name('index');
+        Route::get('/feed/{format}', [PostController::class, 'feed'])->name('feed');
         Route::get('/create', [PostController::class, 'create'])->name('create');
         Route::get('/{id}', [PostController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
