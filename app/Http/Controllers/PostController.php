@@ -19,6 +19,34 @@ class PostController extends Controller
 
     public function feed($format) {
         $posts = Post::with('category', 'author')
+            ->orderBy('created_at', 'desc')
+            ->limit(10)
+            ->get();
+        $contentType = null;
+        $response = null;
+
+        switch ($format) {
+            case 'json':
+                //$response = $posts->makeHidden(['title', 'slug'])->toJson();
+                //$response = $posts->makeVisible(['title', 'slug'])->toJson();
+                $response = $posts->toJson();
+                $contentType = 'application/json';
+                break;
+            default:
+                //$response = $posts->makeHidden(['title', 'slug'])->toArray();
+                //$response = $posts->makeVisible(['title', 'slug'])->toArray();
+                $response = $posts->toArray();
+                $contentType = 'text/html';
+                break;
+        }
+        //return response()->json($posts);
+        return response($response, 200)->header('Content-Type', $contentType);
+    }
+
+    public function testSerialize($format){
+        // we have add in Post model the method getUserAndCategoryAttribute()
+
+        $posts = Post::with('category', 'author')
             ->limit(10)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -28,17 +56,23 @@ class PostController extends Controller
 
         switch ($format) {
             case 'json':
+                //$response = $posts->makeHidden(['title', 'slug'])->toJson();
+                //$response = $posts->makeVisible(['title', 'slug'])->toJson();
                 $response = $posts->toJson();
                 $contentType = 'application/json';
                 break;
             default:
+                //$response = $posts->makeHidden(['title', 'slug'])->toArray();
+                //$response = $posts->makeVisible(['title', 'slug'])->toArray();
                 $response = $posts->toArray();
                 $contentType = 'text/html';
                 break;
         }
-
         //return response()->json($posts);
         return response($response, 200)->header('Content-Type', $contentType);
+
+
+
     }
 
     public function find($uri){}
