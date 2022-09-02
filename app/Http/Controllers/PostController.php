@@ -44,13 +44,13 @@ class PostController extends Controller
     }
 
     public function testSerialize($format){
-        // we have add in Post model the method getUserAndCategoryAttribute()
-
+        // we have added in Post model the method getUserAndCategoryAttribute()
+        // and the property $appends = ['user-and-category'];
         $posts = Post::with('category', 'author')
             ->limit(10)
             ->orderBy('created_at', 'desc')
             ->get();
-
+        //print_r($posts[0]->user_and_category); die();
         $contentType = null;
         $response = null;
 
@@ -58,6 +58,9 @@ class PostController extends Controller
             case 'json':
                 //$response = $posts->makeHidden(['title', 'slug'])->toJson();
                 //$response = $posts->makeVisible(['title', 'slug'])->toJson();
+
+                // If we don't implement $appends in Post model i can add append
+                //$response = $posts->append('user_and_category')->toJson();
                 $response = $posts->toJson();
                 $contentType = 'application/json';
                 break;
