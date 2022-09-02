@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\PostReadedEvent;
+use App\Events\SaveAuthorOnCreatedPostEvent;
 use App\Listeners\PostReadedListener;
+use App\Listeners\SaveAuthorOnCreatedPostListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         PostReadedEvent::class => [
             PostReadedListener::class,
+        ],
+        SaveAuthorOnCreatedPostEvent::class => [
+            SaveAuthorOnCreatedPostListener::class,
         ],
     ];
 

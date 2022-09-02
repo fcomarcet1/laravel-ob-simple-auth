@@ -21,8 +21,6 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-
-
     public function feed($format) {
         $posts = Post::with('category', 'author')
             ->orderBy('created_at', 'desc')
@@ -113,7 +111,7 @@ class PostController extends Controller
         $postId = $request->input('id');
 
         if ($postId == null && $request->isMethod('POST')) {
-            $input['user_id'] = 11;
+            //$input['user_id'] = 11;
             $input['category_id'] = 1;
             $post = Post::create($input);
             //$message = Session::flash('success', "Role with:" . $role['id']. "created successfully");

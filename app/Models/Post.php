@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\PostReadedEvent;
+use App\Events\SaveAuthorOnCreatedPostEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +23,15 @@ class Post extends Model
         'content',
     ];
 
+    //eloquent events
+    protected $dispatchesEvents = [
+        // retrieved, creating, created, updating, updated,
+        // saving, saved, deleting, deleted, restoring, restored and replicating
+
+        'creating' => SaveAuthorOnCreatedPostEvent::class,
+        //'deleted' => PostReadedEvent::class,
+    ];
+
     protected $hidden = [
         /*'user_id',
         'category_id',*/
@@ -38,7 +49,7 @@ class Post extends Model
         return $this->user_id . ' - ' . $this->category_id;
         //return $this->attributes['user_and_category'] = $this->user_id . ' - ' . $this->category_id;
     }
-    
+
 
     public function category(): BelongsTo {
         return $this->belongsTo(Category::class, 'category_id', 'id');
