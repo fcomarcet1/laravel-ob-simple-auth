@@ -38,6 +38,7 @@ class Post extends Model
         return $this->user_id . ' - ' . $this->category_id;
         //return $this->attributes['user_and_category'] = $this->user_id . ' - ' . $this->category_id;
     }
+    
 
     public function category(): BelongsTo {
         return $this->belongsTo(Category::class, 'category_id', 'id');

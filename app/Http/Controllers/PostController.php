@@ -59,7 +59,7 @@ class PostController extends Controller
                 //$response = $posts->makeHidden(['title', 'slug'])->toJson();
                 //$response = $posts->makeVisible(['title', 'slug'])->toJson();
 
-                // If we don't implement $appends in Post model i can add append
+                // If we don't implement $appends in Post model I can add append
                 //$response = $posts->append('user_and_category')->toJson();
                 $response = $posts->toJson();
                 $contentType = 'application/json';
@@ -67,6 +67,9 @@ class PostController extends Controller
             default:
                 //$response = $posts->makeHidden(['title', 'slug'])->toArray();
                 //$response = $posts->makeVisible(['title', 'slug'])->toArray();
+
+                // If we don't implement $appends in Post model I can add append
+                //$response = $posts->append('user_and_category')->toArray();
                 $response = $posts->toArray();
                 $contentType = 'text/html';
                 break;
