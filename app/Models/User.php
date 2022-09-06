@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Events\UserCreatedEvent;
+use App\Events\UserDeletedEvent;
+use App\Events\UserUpdatedEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,6 +50,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => UserCreatedEvent::class,
+        'updated' => UserUpdatedEvent::class,
+        'deleted' => UserDeletedEvent::class,
     ];
 
     public function role(): BelongsTo {
